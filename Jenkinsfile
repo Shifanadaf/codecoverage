@@ -16,7 +16,7 @@ pipeline {
                 set PATH=%PYTHON_PATH%;%PATH%
                 python --version
                 python -m pip install coverage
-                where coverage
+                
                 pip show coverage
                 '''
     }
@@ -26,8 +26,8 @@ pipeline {
             bat '''
             set PATH=%PYTHON_PATH%;%PATH%
             echo Running tests with coverage...
-            coverage run -m unittest discover
-            coverage xml
+            python coverage run -m unittest discover
+            python coverage xml
             '''
     }
 }
