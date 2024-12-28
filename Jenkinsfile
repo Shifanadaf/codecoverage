@@ -14,21 +14,21 @@ pipeline {
             steps {
                 bat '''
                 set PATH=%PYTHON_PATH%;%PATH%
-                echo PATH: %PATH%
-                where python
+                python --version
+                pip install coverage
                 where coverage
-                
+                pip show coverage
                 '''
-            }
-        }
-        stage('Run Unit Tests and Generate Coverage') {
-            steps {
-                bat '''
-                set PATH=%PYTHON_PATH%;%PATH%
-                echo Running tests with coverage...
-                python -m coverage run --source=. test_fibonacci.py
-                python -m coverage xml -o coverage.xml
-                '''
+    }
+}
+    stage('Run Unit Tests and Generate Coverage') {
+        steps {
+            bat '''
+            set PATH=%PYTHON_PATH%;%PATH%
+            echo Running tests with coverage...
+            coverage run -m unittest discover
+            coverage xml
+            '''
     }
 }
         
