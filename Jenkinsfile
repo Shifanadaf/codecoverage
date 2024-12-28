@@ -14,9 +14,9 @@ pipeline {
             steps {
                 bat '''
                 set PATH=%PYTHON_PATH%;%PATH%
-                python --version
-                pip install coverage
-                pip show coverage
+                echo PATH: %PATH%
+                where python
+                where coverage
                 
                 '''
             }
@@ -25,19 +25,12 @@ pipeline {
             steps {
                 bat '''
                 set PATH=%PYTHON_PATH%;%PATH%
-                pip install coverage
-                echo "Running tests with coverage..."
-                coverage run --source=. test_fibonacci.py
-                coverage xml -o coverage.xml
-                if exist coverage.xml (
-                    echo "Coverage report generated successfully."
-                ) else (
-                    echo "Error: Coverage report not found!"
-                    exit /b 1
-                )
+                echo Running tests with coverage...
+                python -m coverage run --source=. test_fibonacci.py
+                python -m coverage xml -o coverage.xml
                 '''
-            }
-        }
+    }
+}
         
         stage('SonarQube Analysis') {
            environment {
