@@ -26,8 +26,8 @@ pipeline {
             bat '''
             set PATH=%PYTHON_PATH%;%PATH%
             echo Running tests with coverage...
-            python coverage run -m unittest discover
-            python coverage xml
+            python -m coverage run -m unittest discover
+            python -m coverage xml
             '''
     }
 }
