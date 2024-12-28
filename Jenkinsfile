@@ -2,7 +2,7 @@
 pipeline {
     agent any
     environment {
-        PYTHON_PATH = 'C:\\Python312;C:\\Python312\\Scripts'
+        PYTHON_PATH='C:\\Python312;C:\\Python312\\Scripts'
     }
     stages {
         stage('Checkout') {
@@ -14,6 +14,7 @@ pipeline {
             steps {
                 bat '''
                 set PATH=%PYTHON_PATH%;%PATH%
+                python --version
                 pip install coverage
                 pip show coverage
                 '''
