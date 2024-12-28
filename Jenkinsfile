@@ -24,6 +24,7 @@ pipeline {
             steps {
                 bat '''
                 set PATH=%PYTHON_PATH%;%PATH%
+                pip install coverage
                 echo "Running tests with coverage..."
                 coverage run --source=. test_fibonacci.py
                 coverage xml -o coverage.xml
