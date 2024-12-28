@@ -15,7 +15,7 @@ pipeline {
                 bat '''
                 set PATH=%PYTHON_PATH%;%PATH%
                 python --version
-                pip install coverage
+                python -m pip install coverage
                 where coverage
                 pip show coverage
                 '''
