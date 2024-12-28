@@ -17,6 +17,13 @@ pipeline {
                 python --version
                 pip install coverage
                 pip show coverage
+                
+                '''
+            }
+        }
+        stage('Run Unit Tests and Generate Coverage') {
+            steps {
+                bat '''
                 set PATH=%PYTHON_PATH%;%PATH%
                 pip install coverage
                 echo "Running tests with coverage..."
