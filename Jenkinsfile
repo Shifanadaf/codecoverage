@@ -25,8 +25,14 @@ pipeline {
                 bat '''
                 set PATH=%PYTHON_PATH%;%PATH%
                 echo "Running tests with coverage..."
-                coverage run -m unittest discover
-                coverage xml
+                coverage run --source=. test_fibonacci.py
+                coverage xml -o coverage.xml
+                if exist coverage.xml (
+                    echo "Coverage report generated successfully."
+                ) else (
+                    echo "Error: Coverage report not found!"
+                    exit /b 1
+                )
                 '''
             }
         }
